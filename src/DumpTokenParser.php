@@ -2,6 +2,8 @@
 
 namespace HelloNico\Twig;
 
+use HelloNico\Twig\DumpNode;
+use Twig\Node\Node;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
 
@@ -9,20 +11,19 @@ use Twig\TokenParser\AbstractTokenParser;
  * Token Parser for the 'dump' tag.
  *
  * Dump variables with:
- * <pre>
- *  {% dump %}
- *  {% dump foo %}
- *  {% dump foo, bar %}
- * </pre>
+ *
+ *     {% dump %}
+ *     {% dump foo %}
+ *     {% dump foo, bar %}
  *
  * @author Julien Galenski <julien.galenski@gmail.com>
  */
-class DumpTokenParser extends AbstractTokenParser
+final class DumpTokenParser extends AbstractTokenParser
 {
     /**
      * {@inheritdoc}
      */
-    public function parse(Token $token)
+    public function parse(Token $token): Node
     {
         $values = null;
         if (!$this->parser->getStream()->test(Token::BLOCK_END_TYPE)) {
@@ -36,7 +37,7 @@ class DumpTokenParser extends AbstractTokenParser
     /**
      * {@inheritdoc}
      */
-    public function getTag()
+    public function getTag(): string
     {
         return 'dump';
     }
