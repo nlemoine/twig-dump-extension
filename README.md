@@ -23,7 +23,7 @@ In Twig templates:
 {% dump foo, bar %}
 ```
 
-# Extra
+## Extra
 
 Set some dumper options with the `hellonico/var-dumper-configurator` package:
 
