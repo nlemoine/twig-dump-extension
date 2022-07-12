@@ -3,7 +3,7 @@
 namespace HelloNico\Twig;
 
 use HelloNico\Twig\DumpTokenParser;
-use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Cloner\ClonerInterface;
 use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
@@ -20,10 +20,10 @@ final class DumpExtension extends AbstractExtension
     private $cloner;
     private $dumper;
 
-    public function __construct()
+    public function __construct(ClonerInterface $cloner, HtmlDumper $dumper = null)
     {
-        $this->cloner = new VarCloner();
-        $this->dumper = new HtmlDumper();
+        $this->cloner = $cloner;
+        $this->dumper = $dumper;
     }
 
     /**
@@ -64,8 +64,8 @@ final class DumpExtension extends AbstractExtension
             unset($vars[0], $vars[1]);
         }
 
-        $dump = fopen('php://memory', 'r+b');
-        $this->dumper = $this->dumper ?: new HtmlDumper();
+        $dump = fopen('php://memory', 'r+');
+        $this->dumper = $this->dumper ?? new HtmlDumper();
         $this->dumper->setCharset($env->getCharset());
 
         foreach ($vars as $value) {

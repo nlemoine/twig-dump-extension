@@ -1,18 +1,18 @@
 {
   "name": "hellonico/twig-dump-extension",
-  "type": "library",
   "description": "VarDumper Twig extension",
-  "homepage": "https://github.com/nlemoine/twig-dump-extension",
   "license": "GPL-3.0+",
+  "type": "library",
   "authors": [
     {
       "name": "Nicolas Lemoine",
-      "email": "dev@helloni.co",
+      "email": "nico@niconico.fr",
       "homepage": "https://github.com/nlemoine"
     }
   ],
+  "homepage": "https://github.com/nlemoine/twig-dump-extension",
   "require": {
-    "symfony/var-dumper": "^4.2 || ^5.0",
+    "symfony/var-dumper": "^4.2 || ^5.0 || ^6.0",
     "twig/twig": "^2.4 || ^3.0"
   },
   "autoload": {
