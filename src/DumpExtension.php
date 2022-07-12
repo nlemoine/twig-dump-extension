@@ -4,11 +4,13 @@ namespace HelloNico\Twig;
 
 use HelloNico\Twig\DumpTokenParser;
 use Symfony\Component\VarDumper\Cloner\ClonerInterface;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\Template;
 use Twig\TwigFunction;
+use HelloNico\VarDumperConfigurator\VarDumperConfigurator;
 
 /**
  * Provides integration of the dump() function with Twig.
@@ -20,10 +22,15 @@ final class DumpExtension extends AbstractExtension
     private $cloner;
     private $dumper;
 
-    public function __construct(ClonerInterface $cloner, HtmlDumper $dumper = null)
+    public function __construct(?ClonerInterface $cloner = null, ?HtmlDumper $dumper = null)
     {
-        $this->cloner = $cloner;
-        $this->dumper = $dumper;
+        $this->cloner = $cloner ?? new VarCloner();
+        if (!$dumper && class_exists(VarDumperConfigurator::class)) {
+            $this->dumper = VarDumperConfigurator::getDumper();
+        }
+        if (!$this->dumper) {
+            $this->dumper = new HtmlDumper();
+        }
     }
 
     /**

@@ -22,3 +22,13 @@ In Twig templates:
 {% dump foo %}
 {% dump foo, bar %}
 ```
+
+# Extra
+
+Set some dumper options with the `hellonico/var-dumper-configurator` package:
+
+```bash
+composer req hellonico/var-dumper-configurator --dev
+```
+
+See https://github.com/nlemoine/var-dumper-configurator for configuration.
