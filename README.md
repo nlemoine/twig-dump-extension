@@ -1,3 +1,7 @@
+⚠️ This package is abandoned, use [Twig-bridge](https://github.com/symfony/twig-bridge) instead.
+
+--- 
+
 # Twig Dump Extension
 
 Standalone Symfony Var Dumper Twig extension.
